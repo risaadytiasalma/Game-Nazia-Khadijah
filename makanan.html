@@ -1,0 +1,12 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>Makanan</title></head><body><div id="app"></div><button id="home" aria-label="Kembali">🏠</button><script src="common.js"></script><script>
+const BU=[['🍎','apel'],['🍌','pisang'],['🍊','jeruk'],['🍇','anggur'],['🍓','stroberi'],['🍉','semangka'],['🍍','nanas'],['🥭','mangga'],['🍐','pir']];
+const SA=[['🥕','wortel'],['🥦','brokoli'],['🍅','tomat'],['🌽','jagung'],['🥔','kentang'],['🍆','terong'],['🥒','timun']];
+const SE=[['🥦','brokoli'],['🍎','apel'],['🥛','susu'],['🥕','wortel'],['🍌','pisang'],['🥚','telur'],['🐟','ikan']];
+const TI=[['🍟','kentang goreng'],['🍩','donat'],['🍬','permen'],['🥤','minuman manis'],['🍭','lolipop'],['🍰','kue manis'],['🍔','burger']];
+const two=(a,k,t)=>C.shuf(a).slice(0,2).map(x=>({k,h:x[0],say:x[1]+', '+t}));
+C.start([
+  ['🍎','Nama buah dan sayur','#ff9b8a',s=>C.grid(s,BU.concat(SA).map((a,i)=>({bg:C.P[i%6],big:a[0],sm:a[1],say:a[1]})))],
+  ['🥕','Buah atau sayur?','#ffe9a8',s=>C.match(s,()=>({multi:true,targets:[{k:'buah',h:'🍎',l:'Buah'},{k:'sayur',h:'🥦',l:'Sayur'}],drags:two(BU,'buah','buah').concat(two(SA,'sayur','sayur'))}))],
+  ['💪','Sehat atau tidak?','#c9f0d3',s=>C.match(s,()=>({multi:true,targets:[{k:'sehat',h:'😋',l:'Sehat'},{k:'tidak',h:'🚫',l:'Tidak sehat'}],drags:two(SE,'sehat','makanan sehat').concat(two(TI,'tidak','tidak sehat'))}))]
+]);
+</script></body></html>

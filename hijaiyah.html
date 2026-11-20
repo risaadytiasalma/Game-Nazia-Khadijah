@@ -1,0 +1,7 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>Huruf Hijaiyah</title></head><body><div id="app"></div><button id="home" aria-label="Kembali">🏠</button><script src="common.js"></script><script>
+const HJ=[['ا','alif'],['ب','ba'],['ت','ta'],['ث','tsa'],['ج','jim'],['ح','ha'],['خ','kha'],['د','dal'],['ذ','dzal'],['ر','ra'],['ز','zay'],['س','sin'],['ش','syin'],['ص','shad'],['ض','dhad'],['ط','tha'],['ظ','zha'],['ع','ain'],['غ','ghain'],['ف','fa'],['ق','qaf'],['ك','kaf'],['ل','lam'],['م','mim'],['ن','nun'],['و','wau'],['ه','ha kecil'],['ء','hamzah'],['ي','ya']];
+C.start([
+  ['ب','Huruf hijaiyah','#c7a6ff',s=>C.grid(s,HJ.map((a,i)=>({bg:C.P[i%6],big:a[0],say:a[1]})))],
+  ['🤔','Tebak huruf','#ffd36e',s=>C.quiz(s,HJ.map(a=>({h:a[0],n:a[1]})),n=>'Mana huruf '+n+'?')]
+]);
+</script></body></html>

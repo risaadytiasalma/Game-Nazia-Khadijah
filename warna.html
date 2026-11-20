@@ -1,0 +1,10 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>Kenali Warna</title></head><body><div id="app"></div><button id="home" aria-label="Kembali">🏠</button><script src="common.js"></script><script>
+const O=[['🍎','apel','merah','#ff3b4a'],['🍌','pisang','kuning','#ffd21f'],['🥒','timun','hijau','#2fc765'],['🐳','paus','biru','#2f8cff'],['🌸','bunga','pink','#ff7ab8'],['🍊','jeruk','oranye','#ff8a1f'],['🍇','anggur','ungu','#9b5cff'],['☁️','awan','putih','#ffffff'],['🐈‍⬛','kucing','hitam','#3a3a3a'],['🍫','cokelat','cokelat','#8a5a3c']];
+C.start([
+  ['🌈','Benda dan warna','#ffb26b',s=>C.grid(s,O.map(o=>({bg:o[3]+'66',big:o[0],sm:o[2],say:o[1]+' '+o[2],bd:o[3]==='#ffffff'})))],
+  ['🎯','Cocokkan warna','#ffd6e0',s=>C.match(s,()=>{
+    const set=C.shuf(O).slice(0,3);
+    return{targets:set.map(o=>({k:o[2],h:'<span style="opacity:0">⬛</span>',bg:o[3]})),drags:set.map(o=>({k:o[2],h:o[0],say:o[1]+' '+o[2]}))};
+  })]
+]);
+</script></body></html>

@@ -1,0 +1,32 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>Doa Harian</title></head><body><div id="app"></div><button id="home" aria-label="Kembali">🏠</button><script src="common.js"></script><script>
+/* [ikon, judul, [gambar diam, gambar bergerak], arab, latin, arti] */
+const D=[
+['🍽️','Sebelum makan',['😋','🥄'],'اَللّٰهُمَّ بَارِكْ لَنَا فِيْمَا رَزَقْتَنَا وَقِنَا عَذَابَ النَّارِ','Allahumma barik lana fima razaqtana wa qina adzaban nar','Ya Allah, berkahilah rezeki yang Engkau berikan kepada kami dan jagalah kami dari siksa neraka.'],
+['😋','Sesudah makan',['😊','🍽️'],'اَلْحَمْدُ لِلّٰهِ الَّذِيْ أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِيْنَ','Alhamdulillahilladzi ath-amana wa saqana wa ja-alana muslimin','Segala puji bagi Allah yang telah memberi kami makan dan minum serta menjadikan kami muslim.'],
+['😴','Sebelum tidur',['😴','🌙'],'بِاسْمِكَ اللّٰهُمَّ أَحْيَا وَبِاسْمِكَ أَمُوْتُ','Bismikallahumma ahya wa bismika amut','Dengan nama-Mu ya Allah aku hidup dan aku mati.'],
+['☀️','Bangun tidur',['😃','☀️'],'اَلْحَمْدُ لِلّٰهِ الَّذِيْ أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُوْرُ','Alhamdulillahilladzi ahyana ba-da ma amatana wa ilaihin nusyur','Segala puji bagi Allah yang menghidupkan kami setelah mematikan kami, dan kepada-Nya kami kembali.'],
+['🚽','Masuk kamar mandi',['🚿','🧒'],'اَللّٰهُمَّ إِنِّيْ أَعُوْذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ','Allahumma inni audzu bika minal khubutsi wal khabaits','Ya Allah, aku berlindung kepada-Mu dari godaan setan laki-laki dan perempuan.'],
+['🧼','Keluar kamar mandi',['😊','🧼'],'غُفْرَانَكَ الْحَمْدُ لِلّٰهِ الَّذِيْ أَذْهَبَ عَنِّي الْأَذَى وَعَافَانِيْ','Ghufranaka, alhamdulillahilladzi adzhaba annil adza wa afani','Aku memohon ampunan-Mu. Segala puji bagi Allah yang menghilangkan kotoran dari tubuhku dan menyehatkanku.'],
+['👕','Memakai pakaian',['🧒','👕'],'اَلْحَمْدُ لِلّٰهِ الَّذِيْ كَسَانِيْ هٰذَا وَرَزَقَنِيْهِ مِنْ غَيْرِ حَوْلٍ مِنِّيْ وَلَا قُوَّةٍ','Alhamdulillahilladzi kasani hadza wa razaqanihi min ghairi haulin minni wa la quwwah','Segala puji bagi Allah yang memberiku pakaian ini dan rezeki tanpa daya dan kekuatan dariku.'],
+['🪞','Bercermin',['🪞','😊'],'اَللّٰهُمَّ كَمَا حَسَّنْتَ خَلْقِيْ فَحَسِّنْ خُلُقِيْ','Allahumma kama hassanta khalqi fahassin khuluqi','Ya Allah, sebagaimana Engkau baguskan rupaku, baguskanlah akhlakku.'],
+['🏠','Masuk rumah',['🏠','🧒'],'بِسْمِ اللهِ وَلَجْنَا وَبِسْمِ اللهِ خَرَجْنَا وَعَلَى اللهِ رَبِّنَا تَوَكَّلْنَا','Bismillahi walajna wa bismillahi kharajna wa ala Allahi rabbina tawakkalna','Dengan nama Allah kami masuk, dengan nama Allah kami keluar, dan kepada Allah Tuhan kami bertawakal.'],
+['🚪','Keluar rumah',['🚪','🧒'],'بِسْمِ اللهِ تَوَكَّلْتُ عَلَى اللهِ لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ','Bismillahi tawakkaltu alallah, la haula wa la quwwata illa billah','Dengan nama Allah, aku bertawakal kepada Allah, tiada daya dan kekuatan kecuali dengan pertolongan Allah.'],
+['🚗','Naik kendaraan',['🚗','🧒'],'سُبْحَانَ الَّذِيْ سَخَّرَ لَنَا هٰذَا وَمَا كُنَّا لَهُ مُقْرِنِيْنَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُوْنَ','Subhanalladzi sakhkhara lana hadza wa ma kunna lahu muqrinin wa inna ila rabbina lamunqalibun','Maha Suci Allah yang menundukkan ini bagi kami padahal kami tidak mampu menguasainya, dan kepada Tuhan kami pasti kembali.'],
+['👨‍👩‍👧','Untuk orang tua',['👨‍👩‍👧','❤️'],'رَبِّ اغْفِرْ لِيْ وَلِوَالِدَيَّ وَارْحَمْهُمَا كَمَا رَبَّيَانِيْ صَغِيْرًا','Rabbighfir li wa liwalidayya warhamhuma kama rabbayani shaghira','Ya Tuhanku, ampunilah aku dan kedua orang tuaku, sayangilah mereka seperti mereka menyayangiku waktu kecil.'],
+['📖','Sebelum belajar',['📖','💡'],'رَبِّ زِدْنِيْ عِلْمًا وَارْزُقْنِيْ فَهْمًا','Rabbi zidni ilma, warzuqni fahma','Ya Tuhanku, tambahkanlah ilmuku dan berilah aku pemahaman.'],
+['🕌','Masuk masjid',['🕌','🧒'],'اَللّٰهُمَّ افْتَحْ لِيْ أَبْوَابَ رَحْمَتِكَ','Allahummaftah li abwaba rahmatik','Ya Allah, bukakanlah pintu-pintu rahmat-Mu untukku.'],
+['🚶','Keluar masjid',['☀️','🧒'],'اَللّٰهُمَّ إِنِّيْ أَسْأَلُكَ مِنْ فَضْلِكَ','Allahumma inni as-aluka min fadhlik','Ya Allah, aku memohon karunia-Mu.'],
+['💧','Sesudah wudhu',['💧','🧒'],'أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيْكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُوْلُهُ','Asyhadu alla ilaha illallah wahdahu la syarika lah, wa asyhadu anna Muhammadan abduhu wa rasuluh','Aku bersaksi tiada Tuhan selain Allah Yang Esa tiada sekutu bagi-Nya, dan aku bersaksi Muhammad hamba dan utusan-Nya.'],
+['🤧','Ketika bersin',['🤧','💨'],'اَلْحَمْدُ لِلّٰهِ','Alhamdulillah','Segala puji bagi Allah.'],
+['☔','Ketika hujan',['☔','🌧️'],'اَللّٰهُمَّ صَيِّبًا نَافِعًا','Allahumma shayyiban nafia','Ya Allah, turunkanlah hujan yang bermanfaat.'],
+['🌍','Kebaikan dunia akhirat',['🌍','🤲'],'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ','Rabbana atina fid dunya hasanah wa fil akhirati hasanah wa qina adzaban nar','Ya Tuhan kami, berilah kami kebaikan di dunia dan akhirat dan lindungilah kami dari siksa neraka.'],
+['🤲','Memohon ampun',['🤲','⭐'],'رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُوْنَنَّ مِنَ الْخَاسِرِيْنَ','Rabbana zalamna anfusana wa in lam taghfir lana wa tarhamna lanakunanna minal khasirin','Ya Tuhan kami, kami telah menzalimi diri kami; jika Engkau tidak mengampuni dan merahmati kami, pastilah kami termasuk orang yang rugi.']
+];
+function show(s,d){
+  const o=C.$('ov');
+  o.innerHTML='<div class="card"><div class="sc"><span>'+d[2][0]+'</span><span class="m">'+d[2][1]+'</span></div><div class="ar">'+d[3]+'</div><p>'+d[4]+'</p><small>'+d[5]+'</small></div>';
+  o.onpointerdown=()=>{o.remove();try{speechSynthesis.cancel()}catch(e){}};
+  s.appendChild(o);
+}
+C.start([['🤲','Doa harian','#ffc2c2',s=>C.grid(s,D.map((d,i)=>({bg:C.P[i%6],big:d[0],sm:d[1],say:d[4],fn:()=>show(s,d)})))]]);
+</script></body></html>

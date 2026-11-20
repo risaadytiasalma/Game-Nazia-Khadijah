@@ -1,0 +1,32 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>Angka</title></head><body><div id="app"></div><button id="home" aria-label="Kembali">🏠</button><script src="common.js"></script><script>
+const W=['satu','dua','tiga','empat','lima','enam','tujuh','delapan','sembilan','sepuluh'];
+const E=['🍎','🐥','⭐','🚗','🎈','🌸','🍓','🐟'];
+const pickE=()=>E[Math.floor(Math.random()*E.length)];
+function hitung(s){
+  const w=C.$('pg');s.appendChild(w);
+  const round=()=>{
+    w.innerHTML='';
+    const n=1+Math.floor(Math.random()*10),e=pickE(),g=C.$('cnt');let c=0;
+    for(let i=0;i<n;i++){
+      const d=C.$('cell');d.textContent=e;
+      d.onpointerdown=()=>{
+        if(d.dataset.d)return;d.dataset.d=1;c++;
+        d.style.background='hsl('+(c*47%360)+',85%,80%)';d.classList.add('bop');
+        C.tone(C.NT[c%8],.3,0);C.say(W[c-1]);
+        if(c===n){setTimeout(C.win,900);setTimeout(round,3000)}
+      };
+      g.appendChild(d);
+    }
+    w.appendChild(g);
+  };
+  round();
+}
+C.start([
+  ['🔢','Angka 1 sampai 30','#ff9ad5',s=>C.grid(s,Array.from({length:30},(_,i)=>({bg:C.P[(i+1)%6],big:i+1,say:String(i+1)})))],
+  ['🍎','Hitung benda','#ffe9a8',hitung],
+  ['🎯','Cocokkan jumlah','#c9f0d3',s=>C.match(s,()=>{
+    const ns=C.shuf([1,2,3,4,5,6,7,8,9,10]).slice(0,3),e=pickE();
+    return{targets:ns.map(n=>({k:''+n,h:e.repeat(n),fs:'min(7vmin,56px)'})),drags:ns.map(n=>({k:''+n,h:n,say:W[n-1]}))};
+  })]
+]);
+</script></body></html>

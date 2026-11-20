@@ -1,0 +1,7 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><title>Huruf</title></head><body><div id="app"></div><button id="home" aria-label="Kembali">🏠</button><script src="common.js"></script><script>
+const L=[['A','🍎','apel'],['B','🦆','bebek'],['C','🦎','cicak'],['D','🐑','domba'],['E','🍦','es krim'],['F','📷','foto'],['G','🐘','gajah'],['H','🦈','hiu'],['I','🐟','ikan'],['J','🍊','jeruk'],['K','🐱','kucing'],['L','🐝','lebah'],['M','🚗','mobil'],['N','🍍','nanas'],['O','🌊','ombak'],['P','🍌','pisang'],['Q','📖','quran'],['R','🏠','rumah'],['S','🐮','sapi'],['T','🎩','topi'],['U','🐍','ular'],['V','🎻','biola'],['W','🥕','wortel'],['X','🎹','xilofon'],['Y','🪀','yoyo'],['Z','🦓','zebra']];
+C.start([
+  ['🔤','Huruf dan gambar','#b8e07a',s=>C.grid(s,L.map((a,i)=>({bg:C.P[i%6],big:a[0],sm:a[1]+' '+a[2],say:a[0]+', '+a[2]})))],
+  ['🤔','Tebak huruf','#ffd36e',s=>C.quiz(s,L.map(a=>({h:a[0],n:a[0]})),n=>'Mana huruf '+n+'?')]
+]);
+</script></body></html>
