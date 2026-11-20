@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Game Balita</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#fff1c9;--ink:#1d2a44}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2b2a52}}
+:root[data-theme="dark"]{--bg:#2b2a52}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%;background:var(--bg)}
+body{margin:0;height:100%;overflow:hidden;background:var(--bg);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;font-family:ui-rounded,"Nunito","Trebuchet MS",sans-serif;color:var(--ink)}
+.menu{height:100%;box-sizing:border-box;padding:3vmin;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(2,1fr);gap:2.5vmin}
+@media (orientation:portrait){.menu{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr)}}
+.t{border-radius:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0;box-shadow:0 6px 0 rgba(0,0,0,.12);color:var(--ink);text-decoration:none;-webkit-tap-highlight-color:transparent}
+.t b{font-size:min(14vmin,110px);line-height:1;font-weight:400}
+.t span{font-size:clamp(14px,2.8vmin,24px);font-weight:800;margin-top:1vmin;text-align:center}
+.t.on:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.12)}
+.t:not(.on){opacity:.35;pointer-events:none;filter:grayscale(.6)}
+</style>
+</head>
+<body>
+<div class="menu" id="m"></div>
+<script>
+/* daftar game: tile aktif otomatis kalau file-nya ada di repositori */
+const G=[
+  ['balon.html','🎈','Pecah balon','#ff9bb0'],
+  ['hewan.html','🐘','Hewan','#ffd36e'],
+  ['gambar.html','🎨','Gambar','#8fd3ff'],
+  ['warna.html','🌈','Kenali warna','#ffb26b'],
+  ['angka.html','🔢','Angka','#ff9ad5'],
+  ['huruf.html','🔤','Huruf','#b8e07a'],
+  ['hijaiyah.html','ب','Hijaiyah','#c7a6ff'],
+  ['makanan.html','🍎','Makanan','#ff9b8a'],
+  ['doa.html','🤲','Doa harian','#ffc2c2'],
+  ['campuran.html','🧩','Campuran','#7be0a4']
+];
+const m=document.getElementById('m');
+const tiles=G.map(g=>{
+  const a=document.createElement('a');a.className='t';a.style.background=g[3];
+  a.innerHTML='<b>'+g[1]+'</b><span>'+g[2]+'</span>';
+  m.appendChild(a);return a;
+});
+function enable(i){tiles[i].classList.add('on');tiles[i].href=G[i][0]}
+G.forEach((g,i)=>{
+  fetch(g[0],{method:'HEAD'}).then(r=>{if(r.ok)enable(i)}).catch(()=>enable(i));
+});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+</script>
+</body>
+</html>
